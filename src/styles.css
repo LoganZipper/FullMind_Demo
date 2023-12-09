@@ -99,3 +99,11 @@ input {
   flex: 2;
   height: 20px;
 }
+
+@media all and (max-width: 800px) {
+  .container {
+    width: 100%;
+    margin: 0;
+    height: 100%;
+  }
+}
