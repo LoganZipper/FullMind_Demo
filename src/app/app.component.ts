@@ -7,6 +7,7 @@ import { TaskService } from './services/task.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  title = "fullmind-demo"
   visiblePercent: number = 90
   hiddenPercent: number = 10
   isUpdated = false;
