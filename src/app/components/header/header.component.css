@@ -1,0 +1,41 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+h1 {
+    margin-left: 0.1em;
+    font-size: 2.5em;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    font-size: 1.25em;
+}
+
+li:before {
+    content: "\2587"; /* 2022 2756 */
+    font-weight: bold;
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1em;
+    margin-right: 0.5em;
+}
+
+#liImportant:before {
+    color: rgb(250, 0, 217, .75);
+}
+
+#liOverdue:before {
+    color: rgb(255, 81, 0, .75);
+}
+
+#liGeneral:before {
+    color: rgb(9, 255, 0, .75);
+}
+

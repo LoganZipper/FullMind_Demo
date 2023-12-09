@@ -1,0 +1,38 @@
+.task {
+  margin: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-bottom: 1px rgba(245, 255, 250, 0.4) solid;
+}
+
+.task.reminder {
+  border-left: 5px solid green;
+}
+
+.task h3 {
+  display: inline-block;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+}
+
+p {
+  display: inline;
+  width: 90%;
+}
+
+input {
+  display: none;
+}
+
+#separator {
+  display: inline-block;
+  width: 90%;
+}
+
+fa-icon {
+  color: red;
+  text-align: right;
+  float: right;
+  top: 0;
+}

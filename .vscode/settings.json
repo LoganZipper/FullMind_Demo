@@ -1,0 +1,36 @@
+{
+    "favorites.resources": [
+        {
+            "filePath": "src\\default_localStorage.txt",
+            "group": "Default"
+        },
+        {
+            "filePath": "src\\app\\mock-tasks.ts",
+            "group": "Default"
+        },
+        {
+            "filePath": "src\\app\\services\\task.service.ts",
+            "group": "Default"
+        },
+        {
+            "filePath": "src\\app\\components\\tasks\\tasks.component.ts",
+            "group": "Default"
+        },
+        {
+            "filePath": "src\\app\\components\\task-item\\task-item.component.ts",
+            "group": "Default"
+        },
+        {
+            "filePath": "src\\app\\components\\header\\header.component.ts",
+            "group": "Default"
+        },
+        {
+            "filePath": "src\\app\\app.component.css",
+            "group": "Default"
+        },
+        {
+            "filePath": "src\\app\\app.component.ts",
+            "group": "Default"
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+<!-- 
+  <h1>{{ title.toUpperCase() }}</h1>
+
+  {{ 1 + 5 }}
+-->
+
+<div class="container">
+  <app-header></app-header>
+  <div class="horizontal" id="test3">
+    <app-tasks></app-tasks>
+  </div>
+  
+  <div class="isolate">
+    <div class="vertical" id="test1" (click)="focusList(1)">
+      <app-tasks></app-tasks>
+    </div>
+    <div class="vertical" id="test2" (click)="focusList(2)">
+      <app-tasks style="display: none;"></app-tasks>
+    </div>
+  </div>
+</div>

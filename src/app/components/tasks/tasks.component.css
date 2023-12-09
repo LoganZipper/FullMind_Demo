@@ -1,0 +1,38 @@
+h4 {
+  color: gray;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+div {
+  background: black;
+  margin: 5px;
+  padding: 5px 20px;
+  cursor: pointer;
+  /* border: 1px rgba(245, 255, 250, 0.4) solid; */
+  border-radius: 10px;
+  justify-content: space-between;
+  line-height: 1.5em; /* was 20px */
+}
+
+input {
+  background-color: black;
+  color:mintcream;
+  border: none;
+  font-size: 1em;
+  font-family: inherit;
+  width: 90%;
+  height: 1.5em;
+  margin: 0.1em
+}
+  
+#addIcon {
+    text-align: right;
+    float: right;
+}
+
+.taskDate {
+    /* display: block; */
+    color: dimgray;
+}
