@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TaskService } from './services/task.service';
+import { List } from 'src/constants';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,6 @@ import { TaskService } from './services/task.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = "fullmind_demo"
   visiblePercent: number = 90
   hiddenPercent: number = 10
   isUpdated = false;
@@ -18,6 +18,10 @@ export class AppComponent {
     this.taskService.intializeUser()
   }
 
+  /**
+   * Expand tasklist when clicked on
+   * @param listIdx Index of selected tasklist
+   */
   focusList(listIdx: number) {
     console.log(`Selected pane: ${listIdx}`)
 
@@ -31,8 +35,20 @@ export class AppComponent {
       visibleList.classList.remove('highlight')
 
     this.listAnimation(visibleList, hiddenList)
+
+    const tasksHTML = (<HTMLCollectionOf<HTMLInputElement>>document.getElementsByClassName('task'))
+
+    if(listIdx == List.OVERDUE)
+      tasksHTML[tasksHTML.length-1].style.borderBottom = "none"
+    else if(listIdx == List.DEFAULT)
+      tasksHTML[tasksHTML.length-1].style.borderBottom = "1px rgba(245, 255, 250, 0.4) solid"
   }
 
+  /**
+   * Change Visible list. Currently has no real animation. Maybe next year...
+   * @param visibleList List to BE MADE visible (currently hidden)
+   * @param hiddenList  List to BE MADE hidden (currently visible)
+   */
   listAnimation(visibleList: HTMLInputElement, hiddenList: HTMLInputElement) {    
     
     //NOT ACTUALLY DOING THE ANIMATION FUCK YOU
@@ -50,7 +66,13 @@ export class AppComponent {
       visibleContents[i].style.display = "block"
   }
 
-
+  /**
+   * Function which actually performs width animation on lists to smoothly transistion to the new view.
+   * Currently does absolutely fucking nothing. It's a piece of shit entirely.
+   * @param visibleList The list to be made visible
+   * @param hiddenList  The list to be hidden
+   * @param endWidth    The percentage width the visible tasklist should occupy (90% default)
+   */
   animateWidth(visibleList: HTMLInputElement, hiddenList: HTMLInputElement, endWidth: number) {
     const widthIncrementAmt = 0.5
     visibleList.style.width = this.hiddenPercent + "%"
@@ -61,9 +83,7 @@ export class AppComponent {
 
     function frame() {
       if (parseFloat(visibleList.style.width.replace("%","")) >= endWidth) 
-      {
         clearInterval(id);
-      } 
       else 
       {
         console.log(visibleList.style.width)
@@ -75,19 +95,21 @@ export class AppComponent {
     }
   }
 
+  /**
+   * Function which actually performs height animation on lists to smoothly transistion to the new view.
+   * Currently does absolutely fucking nothing. It's a piece of shit entirely.
+   * @param curVisibleHeight Current height of tasklist view. Incremented until endHeight reached
+   * @param endHeight Desired height of final displayed tasklist view.
+   */
   animateHeight(curVisibleHeight: number, endHeight: number) {
     var id = setInterval(frame, 5);
-    const heightIncrementAmt = 0.5
+    const heightIncrementAmt = 0.5;
 
     function frame() {
       if (curVisibleHeight == endHeight) 
-      {
         clearInterval(id);
-      } 
       else
-      {
         curVisibleHeight += heightIncrementAmt
-      }
     }
   }
 }

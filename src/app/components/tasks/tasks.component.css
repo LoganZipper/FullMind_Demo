@@ -24,7 +24,8 @@ input {
   font-family: inherit;
   width: 90%;
   height: 1.5em;
-  margin: 0.1em
+  margin: 0.1em;
+  /* float: left; */
 }
   
 #addIcon {

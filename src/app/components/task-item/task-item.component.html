@@ -1,6 +1,8 @@
 <div #self class="task">
     <fa-icon [icon]="faTimes" (click)="deleteTask(task)"></fa-icon> 
-    <h3 (click)="editReminder(self)"> {{ task.text }}</h3>
-    <input type="text"  placeholder="New Reminder" class="editInput" (keydown.enter)="saveReminder(self, task)"> <!--(focusout)="saveReminder(self, task)"-->
-    <p> {{ task.day }} </p>
+    <h3 (click)="editReminderText(self)"> {{ task.text }}</h3>
+    <input type="text"  placeholder="New Reminder" class="editInput" (keydown.enter)="saveReminderText(self, task)" (focusout)="saveReminderText(self, task)">
+    <p (click)="editReminderDate(self)"> {{ task.day }} </p>
+    <input type="date" class="taskDate" min={{curDateInput}} max="9999-12-31" (keydown.enter)="saveReminderDate(self, task)" (focusout)="saveReminderDate(self, task)"> <!-- placeholder={{ this.curDateInput }} -->
+
 </div>

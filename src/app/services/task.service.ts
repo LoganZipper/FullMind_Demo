@@ -18,7 +18,7 @@ export class TaskService {
    // Takes Local Storage JSON String and converts to Task array
    parseLSStringToTasks(importedString: string): Task[] {
 
-    console.log(`Imported List: ${importedString}`)
+    // console.log(`Imported List: ${importedString}`)
     try {
       return JSON.parse(importedString)
     } catch (e) {
@@ -36,12 +36,21 @@ export class TaskService {
    overwriteTaskList(storageString: string, importedList: Task[]): void {
     // Get OG list to overwrite
     const baseList = this.getTaskListByEnum(storageString);
+    const importedCopy: Task[] = JSON.parse(JSON.stringify(importedList))
 
-    const tasks = importedList;
     baseList.length = 0
-    importedList.forEach(i => baseList.push(i))
+    importedCopy.forEach(i => baseList.push(i))
     
-    console.log(`Final Tasks: ${baseList}`)
+    // console.log(`Final Tasks: ${baseList}`)
+   }
+
+   /**
+    * Overwrites localStorage w/ current taskLists
+    */
+   updateLS() {
+    localStorage.setItem(Storage.DEFAULT, JSON.stringify(DEFAULT))
+    localStorage.setItem(Storage.IMPORTANT, JSON.stringify(IMPORTANT))
+    localStorage.setItem(Storage.OVERDUE, JSON.stringify(OVERDUE))
    }
 
 
@@ -68,14 +77,12 @@ export class TaskService {
     }
 
     // Create new DEFAULT
-    if(!localStorage.getItem(Storage.DEFAULT)) {
+    if(!localStorage.getItem(Storage.DEFAULT))
       localStorage.setItem(Storage.DEFAULT, JSON.stringify(DEFAULT))
-    }
 
     // Create new OVERDUE
-    if(!localStorage.getItem(Storage.OVERDUE)) {
+    if(!localStorage.getItem(Storage.OVERDUE))
       localStorage.setItem(Storage.OVERDUE, JSON.stringify(OVERDUE))
-    }
   }
 
   /**
@@ -116,8 +123,6 @@ export class TaskService {
     // 'If' conditional for if there is lost info between arrStart->init curIdx
 
     //  * * *
-
-
 
     // Identify valid existing task entries 
 
@@ -241,6 +246,11 @@ export class TaskService {
     this.periodicUpdate()
   }
 
+  /**
+   * Move a task from one list to another. Generally used to move tasks to overdue list
+   * @param task Task to be moved
+   * @param storageString STORAGE enum of list to move task into
+   */
   moveTask(task: Task, storageString: string): void {
     console.log("<<< MOVING TASK >>>")
     console.log("Move " + this.getStorageStringByIndex(this.getTaskParent(task)) + " -> " + this.getTaskListByEnum(storageString))
@@ -265,14 +275,6 @@ export class TaskService {
     console.log("<<< TASK MOVED (hopefully) >>>")
   }
 
-  // TODO: Call periodic update on:
-  //        - Task additions
-  //        - Task modifications
-  //        - Task deletions
-  //        - Page reloads
-  //     +  -> Any other identifiable user actions on the page
-  //        - Potentially some function of time? (probably not)
-
   /**
    * A method to send expired tasks to the overdue list
    */
@@ -294,8 +296,6 @@ export class TaskService {
       overdueList.classList.add('highlight')
   }
 }
-
-
 
   /**
    * Check taskLists for overdue reminders and moves them accordingly
@@ -327,7 +327,6 @@ export class TaskService {
     console.log("<<< END UPDATE FUNCTION >>>")
     return result // 0=no_change | 1=some_change
   }
-
 
   /**
    * Given a storageString, reindexes all elements in a list.
@@ -439,29 +438,3 @@ export class TaskService {
     return DEFAULT
    }
 }
-
-
-
-
-// <<< LEGACY CODE >>> ///
-
-    // << Exerpt taken from getTaskParent() >> //
-    // let curList: Task[] = [];
-    // const listDefault = this.getLocalList(Storage.DEFAULT)
-    // listDefault.subscribe(t => curList = t.map(i=>i))
-    // console.log(`ListDefault: ${listDefault}`)
-    // console.log(`CurList: `)
-    // curList.forEach(i => console.log(i))
-    // console.log(`Looking for Task:`)
-    // console.log(task)
-
-
-  // getLocalList(storageString: string) {
-  //   let importedList = localStorage.getItem(storageString)
-  //   let jsObject: Task[];
-  //   jsObject = TASKS;
-  //   // if(!importedList) jsObject = IMPORTANT
-  //   // else jsObject = JSON.parse(importedList)
-  //   let jsObservable = of(jsObject)
-  //   return jsObservable
-  // }

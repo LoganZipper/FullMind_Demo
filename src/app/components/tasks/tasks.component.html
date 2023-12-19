@@ -1,10 +1,9 @@
 <app-task-item *ngFor="let task of tasks" [task]="task">{{task.text}}</app-task-item>
-<div>
-    <input type="text"  placeholder="New Reminder" name="newTask" class="taskInput" (keydown.enter)="addTask(addItem)"> <!-- (focusout)="addTask(addItem)" -->
-    <fa-icon #addItem id="addIcon" [ngStyle]="{color: 'green'}" [icon]="faAdd" (click)="addTask(addItem)"></fa-icon>
-    <input type="date" class="taskDate" min={{curDateInput}} max="9999-12-31" (keydown.enter)="addTask(addItem)"> <!-- placeholder={{ this.curDateInput }} -->
+<div *ngIf="actuallyUsefulCount != 3">
+    <input type="text"  placeholder="New Reminder" name="newTask" class="taskInput" (keydown.enter)="addTask(actuallyUsefulCount)"> <!-- (focusout)="addTask(addItem)" -->
+    <fa-icon id="addIcon" [ngStyle]="{color: 'green'}" [icon]="faAdd" (click)="addTask(actuallyUsefulCount)"></fa-icon>
+    <input type="date" class="taskDate" min={{curDateInput}} max="9999-12-31" (keydown.enter)="addTask(actuallyUsefulCount)"> <!-- placeholder={{ this.curDateInput }} -->
     
     <br>
     <!-- <input type="text" placeholder="Date (optional)" name="newDate" id="taskDate"> -->
 </div>
-

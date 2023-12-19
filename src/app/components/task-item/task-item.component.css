@@ -17,7 +17,7 @@
 }
 
 p {
-  display: inline;
+  display: inline-flexbox;
   width: 90%;
 }
 

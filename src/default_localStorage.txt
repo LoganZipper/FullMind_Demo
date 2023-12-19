@@ -1,3 +1,8 @@
-DEFAULT     |   [{"text":"Sample Local","day":"Arbitrary Date"},{"text":"Sample Reminder 2"}]
-OVERDUE     |   [{"text":"Sample Overdue","day":"9 Days Ago"},{"text":"Sample Reminder 2", "day":"5 Hours Ago"}]
-IMPORTANT   |   [{"text":"Sample Local","day":"9/21/2023"}]
+DEFAULT
+[{"text":"Sample Local","day":"Arbitrary Date"},{"text":"Sample Reminder 2"}]
+
+OVERDUE
+[{"text":"Sample Overdue","day":"9 Days Ago"},{"text":"Sample Reminder 2", "day":"5 Hours Ago"}]
+
+IMPORTANT
+[{"text":"Sample Local","day":"9/21/2023"}]

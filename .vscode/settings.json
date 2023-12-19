@@ -31,6 +31,10 @@
         {
             "filePath": "src\\app\\app.component.ts",
             "group": "Default"
+        },
+        {
+            "filePath": "src\\TODO.txt",
+            "group": "Default"
         }
     ]
 }

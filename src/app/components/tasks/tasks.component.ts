@@ -17,14 +17,14 @@ export class TasksComponent implements OnInit {
   faAdd = faAdd
   OVERDUE_IDX: number = List.OVERDUE
   static count: number = 0;
-  actuallyUsefulCount = 0;
+  actuallyUsefulCount: number = 0;
   taskListIdx = 0;
   date = new Date();
   curDateInput = `${this.date.getFullYear()}-${this.date.getDate()}-${this.date.getMonth()}`;
 
   constructor(private taskService: TaskService) {
-    this.actuallyUsefulCount++;
-    this.taskListIdx = this.actuallyUsefulCount;
+    // this.actuallyUsefulCount++;
+    // this.taskListIdx = this.actuallyUsefulCount;
   }
 
   ngOnInit(): void {
@@ -32,33 +32,29 @@ export class TasksComponent implements OnInit {
       TasksComponent.count = 0;
     TasksComponent.count += 1;
     
-    // This line needs to be reviewed tbh
-    // this.taskService.getTasks(TasksComponent.count).subscribe((tasks) => this.tasks = tasks);
+    this.actuallyUsefulCount = TasksComponent.count
+    // This is gucci AF... but
+    //  Maybe do better presentation of LOAD_ORDER(?)
+    //  Could Enums represent what the currently defined LOAD ORDER is?
+    //  Certain components are reliant on this NEVER changing
     this.taskService.getTasks(LOAD_ORDER[TasksComponent.count]).subscribe((tasks) => this.tasks = tasks);
-    if(LOAD_ORDER[TasksComponent.count] == List.OVERDUE) {
-       // Somehow remove the new task entrypoint
-    }
-
   }
 
   /**
    * Add a new task to a reminders list.
-   * @param addItem a self reference containing parent task list index
+   * @param listIdx Index of affected task list
    */
-  addTask(addItem: any): void {
+  addTask(listIdx: number): void {
 
-    // Don't question this. It works
-    // ngContext seems to start at 3 and increment upward.
-    // This is how we get the index of the correct card
-    console.log(addItem)
-    const taskListIndex = addItem.__ngContext__ - 3
-    console.log(taskListIndex)
+    // Get list index like a G
+    //  (used to do it like a bitch) 
+    listIdx = listIdx - 1
     
     // Get HTML inputs
-    const inputElement = (<HTMLCollectionOf<HTMLInputElement>>document.getElementsByClassName('taskInput'))[taskListIndex]
-    const dateElement = (<HTMLCollectionOf<HTMLInputElement>>document.getElementsByClassName('taskDate'))[taskListIndex]
+    const inputElement = (<HTMLCollectionOf<HTMLInputElement>>document.getElementsByClassName('taskInput'))[listIdx]
+    const dateElement = (<HTMLCollectionOf<HTMLInputElement>>document.getElementsByClassName('taskDate'))[listIdx]
     // Get task list index
-    const adjustedIndex = LOAD_ORDER[taskListIndex+1] // if DEFAULT ever gets set to 0, this wont need the plus 1!
+    const adjustedIndex = LOAD_ORDER[listIdx+1] // if DEFAULT ever gets set to 0, this wont need the plus 1!
 
     // Read input data
     const htmlInput = inputElement.value.trim();
