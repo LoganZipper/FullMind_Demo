@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-intro": {
+    "fullmind_demo": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-intro",
+            "outputPath": "dist/fullmind_demo",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "angular-intro:build:production"
+              "browserTarget": "fullmind_demo:build:production"
             },
             "development": {
-              "browserTarget": "angular-intro:build:development"
+              "browserTarget": "fullmind_demo:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-intro:build"
+            "browserTarget": "fullmind_demo:build"
           }
         },
         "test": {
